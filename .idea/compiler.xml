@@ -10,14 +10,15 @@
         <module name="admin.test" />
         <module name="admin.main" />
       </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="admin" target="17" />
-      <module name="admin.main" target="17" />
-      <module name="admin.test" target="17" />
-      <module name="service" target="17" />
-      <module name="service.main" target="17" />
       <module name="service.test" target="17" />
+      <module name="test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
