@@ -62,4 +62,7 @@ public class Sql {
     public static String C441_1 = "SELECT cp.coupon_serial, cp.effectivedate, cp.coupon_name, cp.discount FROM couponbox cpb,cust c,coupon cp " +
     "WHERE c.cust_id = cpb.cust_id and cpb.coupon_id = cp.coupon_id and cpb.coupon_box_id = ?";
 
+    public static String selectCustByLogin = "SELECT cust_id, cust_pwd, cust_name FROM cust WHERE cust_id = ? AND cust_pwd = ?";
+
+
 }

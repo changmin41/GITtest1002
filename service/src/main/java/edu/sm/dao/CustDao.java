@@ -57,4 +57,33 @@ public class CustDao implements Dao<String, Cust> {
         }
         return cust;
     }
+
+    public Cust selectByLogin(String id, String pwd, Connection con) throws Exception {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Cust cust = null;
+        try {
+            ps = con.prepareStatement(Sql.selectCustByLogin);
+            ps.setString(1, id);
+            ps.setString(2, pwd);
+            rs = ps.executeQuery();
+
+            if (rs.next()) { // 일치하는 계정이 있으면
+                cust = new Cust();
+                cust.setCust_id(rs.getString("cust_id"));
+                cust.setCust_pwd(rs.getString("cust_pwd"));
+                cust.setCust_name(rs.getString("cust_name"));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return cust; // 없으면 null 반환
+    }
 }

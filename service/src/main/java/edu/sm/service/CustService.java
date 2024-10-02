@@ -39,4 +39,23 @@ public class CustService implements MService<String, Cust> {
 
         return Cust;
     }
+
+    public Cust loginCheck(String id, String pwd) throws Exception {
+        Connection con = cp.getConnection();
+        Cust result = null;
+        try {
+            result = dao.selectByLogin(id, pwd, con);  // ID와 비밀번호로 검증
+            if (result != null) {
+                System.out.println("로그인 성공: " + result.getCust_name());
+            } else {
+
+                System.out.println("로그인 실패: 아이디 또는 비밀번호가 올바르지 않습니다.");
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            cp.releaseConnection(con);
+        }
+        return result;  // null일 경우, 로그인 실패
+    }
 }
